@@ -98,13 +98,13 @@ export function App() {
         position="bottom-right"
         toastOptions={{
           style: {
-            background: '#211E1A',
-            color: '#FFFFFF',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
+            background: '#1B2E52',
+            color: '#FFF3E6',
+            border: '1px solid rgba(203, 212, 229, 0.15)',
           },
         }}
       />
-      <div className="flex flex-col min-h-screen bg-[#10100F] text-[#B8B0A4]">
+      <div className="flex flex-col min-h-screen bg-[#101B35] text-[#AAB8D0]">
         <Navbar />
         <main className="flex-1 flex flex-col">
           <AnimatedRoutes />

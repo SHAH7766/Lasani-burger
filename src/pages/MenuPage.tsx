@@ -47,48 +47,48 @@ export const MenuPage: React.FC = () => {
   }, [selectedCategory, searchQuery, sortBy]);
 
   return (
-    <div className="pt-28 pb-20 min-h-screen bg-[#101B35]">
+    <div className="pt-28 pb-20 min-h-screen theme-bg-primary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-semibold text-[#FF8A4C] uppercase tracking-widest block mb-2">
+          <span className="text-xs font-semibold theme-accent uppercase tracking-widest block mb-2">
             Explore All Offerings
           </span>
-          <h1 className="font-display text-4xl sm:text-6xl text-[#FFF3E6] tracking-wider mb-4">
+          <h1 className="font-display text-4xl sm:text-6xl theme-text-main tracking-wider mb-4">
             OUR COMPLETE MENU
           </h1>
-          <p className="text-sm sm:text-base text-[#AAB8D0]">
+          <p className="text-sm sm:text-base theme-text-muted">
             Juicy burgers, smoky BBQ platters, handcrafted pizzas, and fresh shawarma made fresh for Shahdara.
           </p>
         </div>
 
         {/* Search & Sort Bar */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8 bg-[#1B2E52] p-4 rounded-[24px] border border-[#CBD4E5]/10 shadow-xl">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8 theme-bg-elevated p-4 rounded-[24px] border theme-border shadow-xl">
           {/* Search input */}
           <div className="relative w-full md:w-96">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#AAB8D0]" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 theme-text-muted" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search burgers, BBQ, pizza..."
-              className="w-full bg-[#142341] text-[#FFF3E6] text-sm pl-11 pr-4 py-3 rounded-2xl border border-[#CBD4E5]/15 focus:outline-none focus:border-[#FF7438]"
+              className="w-full theme-bg-secondary theme-text-main text-sm pl-11 pr-4 py-3 rounded-2xl border theme-border focus:outline-none focus:border-[var(--theme-accent)]"
             />
           </div>
 
           {/* Sort Dropdown */}
           <div className="flex items-center gap-3 w-full md:w-auto justify-end">
-            <SlidersHorizontal className="w-4 h-4 text-[#FF8A4C]" />
-            <span className="text-xs text-[#AAB8D0] font-medium">Sort By:</span>
+            <SlidersHorizontal className="w-4 h-4 theme-accent" />
+            <span className="text-xs theme-text-muted font-medium">Sort By:</span>
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="bg-[#142341] text-[#FFF3E6] text-xs py-2.5 px-4 rounded-xl border border-[#CBD4E5]/15 focus:outline-none focus:border-[#FF7438] cursor-pointer"
+              className="theme-bg-secondary theme-text-main text-xs py-2.5 px-4 rounded-xl border theme-border focus:outline-none focus:border-[var(--theme-accent)] cursor-pointer"
             >
-              <option value="default">Featured / Default</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-              <option value="name">Name: A to Z</option>
+              <option value="default" className="bg-[#101B35]">Featured / Default</option>
+              <option value="price-low" className="bg-[#101B35]">Price: Low to High</option>
+              <option value="price-high" className="bg-[#101B35]">Price: High to Low</option>
+              <option value="name" className="bg-[#101B35]">Name: A to Z</option>
             </select>
           </div>
         </div>
@@ -101,8 +101,8 @@ export const MenuPage: React.FC = () => {
               onClick={() => setSelectedCategory(cat.value)}
               className={`px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase transition-all cursor-pointer ${
                 selectedCategory === cat.value
-                  ? 'bg-[#FF7438] text-[#101B35] font-bold shadow-lg shadow-[#FF7438]/25 scale-105'
-                  : 'bg-[#1B2E52] text-[#AAB8D0] hover:bg-[#142341] hover:text-[#FFF3E6] border border-[#CBD4E5]/10'
+                  ? 'btn-primary shadow-lg scale-105'
+                  : 'theme-bg-elevated theme-text-muted hover:theme-bg-secondary hover:theme-text-main border theme-border'
               }`}
             >
               {cat.label}
@@ -112,15 +112,15 @@ export const MenuPage: React.FC = () => {
 
         {/* Grid or Empty State */}
         {filteredItems.length === 0 ? (
-          <div className="text-center py-20 bg-[#1B2E52] rounded-[24px] border border-[#CBD4E5]/10 shadow-xl">
-            <h3 className="font-display text-2xl text-[#FFF3E6] mb-2">No menu items found</h3>
-            <p className="text-sm text-[#AAB8D0] mb-6">Try searching for something else or reset your filters.</p>
+          <div className="text-center py-20 theme-bg-elevated rounded-[24px] border theme-border shadow-xl">
+            <h3 className="font-display text-2xl theme-text-main mb-2">No menu items found</h3>
+            <p className="text-sm theme-text-muted mb-6">Try searching for something else or reset your filters.</p>
             <button
               onClick={() => {
                 setSearchQuery('');
                 setSelectedCategory('all');
               }}
-              className="bg-[#FF7438] hover:bg-[#FF8A4C] text-[#101B35] text-xs font-bold px-6 py-2.5 rounded-full shadow-md cursor-pointer"
+              className="btn-primary text-xs font-bold px-6 py-2.5 rounded-full shadow-md cursor-pointer"
             >
               Reset Filters
             </button>

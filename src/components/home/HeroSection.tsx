@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Phone, Star, Flame } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { handlePhoneClick } from '../../lib/phone';
 
 export const HeroSection: React.FC = () => {
@@ -17,32 +17,52 @@ export const HeroSection: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-7 text-left space-y-6"
           >
             {/* Eyebrow badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1B2E52] border border-[#FF7438]/30 shadow-md">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1B2E52] border border-[#FF7438]/30 shadow-md"
+            >
               <Flame className="w-4 h-4 text-[#FF7438]" />
               <span className="text-xs font-semibold tracking-wider text-[#FF8A4C] uppercase">
                 Shahdara's Food Cravings Destination
               </span>
-            </div>
+            </motion.div>
 
             {/* Main Headline */}
-            <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl tracking-wider text-[#FFF3E6] leading-[0.95]">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="font-display text-5xl sm:text-7xl lg:text-8xl tracking-wider text-[#FFF3E6] leading-[0.95]"
+            >
               BIG FLAVOUR.<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF7438] to-[#FF8A4C]">
                 BOLD CRAVINGS.
               </span>
-            </h1>
+            </motion.h1>
 
             {/* Supporting Text */}
-            <p className="text-base sm:text-lg text-[#AAB8D0] max-w-xl leading-relaxed">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="text-base sm:text-lg text-[#AAB8D0] max-w-xl leading-relaxed"
+            >
               From juicy stacked burgers to sizzling charcoal BBQ, discover the flavours at <strong className="text-[#FFF3E6]">Lasani Burger & BBQ</strong> in Imamia Colony, Shahdara that make every bite unforgettable.
-            </p>
+            </motion.p>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-wrap items-center gap-4 pt-2"
+            >
               <Link
                 to="/menu"
                 className="btn-primary px-8 py-4 rounded-full text-base flex items-center gap-2 group cursor-pointer"
@@ -58,10 +78,15 @@ export const HeroSection: React.FC = () => {
                 <Phone className="w-4 h-4 text-[#FF7438]" />
                 <span>Call to Order</span>
               </a>
-            </div>
+            </motion.div>
 
             {/* Trust badge */}
-            <div className="pt-6 flex items-center gap-6 border-t border-[#CBD4E5]/10">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="pt-6 flex items-center gap-6 border-t border-[#CBD4E5]/10"
+            >
               <div className="flex items-center gap-1.5 bg-[#1B2E52] px-3.5 py-2 rounded-full border border-[#CBD4E5]/10">
                 <Star className="w-4 h-4 text-[#FF8A4C] fill-current" />
                 <span className="text-sm font-bold text-[#FFF3E6]">4.3</span>
@@ -70,14 +95,14 @@ export const HeroSection: React.FC = () => {
               <div className="text-xs text-[#AAB8D0] font-medium">
                 Burgers • Pizza • BBQ • Shawarma
               </div>
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Right Image */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
+            initial={{ opacity: 0, scale: 0.85, rotate: -3 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-5 relative flex items-center justify-center"
           >
             <div className="relative w-full max-w-md aspect-square">
