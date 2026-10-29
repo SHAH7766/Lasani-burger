@@ -161,7 +161,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Open shawarma bread loaded with chicken, french fries, melted cheese sauce, and special garlic dip.',
     category: 'shawarma',
     price: 400,
-    image: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80',
+    image: '/images/menu/cheese-loaded-shawarma-platter.png',
     featured: true,
     spicyLevel: 1,
     prepTime: '10 mins'

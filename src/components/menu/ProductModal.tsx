@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, Plus, Minus, ShoppingBag, Clock, Flame } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import type { MenuItem } from '../../types/menu';
 import { formatCurrency } from '../../lib/formatCurrency';
 import { useCart } from '../../store/useCart';
@@ -40,12 +40,12 @@ export const ProductModal: React.FC<ProductModalProps> = ({ item, onClose }) => 
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-xl bg-[#1B2E52] border border-[#CBD4E5]/15 rounded-[24px] overflow-hidden shadow-2xl z-10 flex flex-col md:flex-row max-h-[90vh]"
+          className="relative w-full max-w-xl bg-[#1B2E52] border border-[#CBD4E5]/15 rounded-[28px] overflow-hidden shadow-2xl z-10 flex flex-col md:flex-row max-h-[90vh]"
         >
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-[#101B35]/80 backdrop-blur-md text-[#FFF3E6] hover:bg-[#FF7438] hover:text-[#101B35] transition-colors cursor-pointer"
+            className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-[#101B35]/80 backdrop-blur-md text-[#FFF3E6] hover:bg-[#FF7438] hover:text-[#101B35] transition-colors cursor-pointer shadow-lg"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -69,7 +69,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ item, onClose }) => 
                   {item.category}
                 </span>
                 {item.featured && (
-                  <span className="bg-[#FF7438] text-[#101B35] text-[10px] font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                  <span className="bg-[#FF7438] text-[#101B35] text-[10px] font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-md">
                     <Flame className="w-3 h-3 text-[#101B35]" /> Featured
                   </span>
                 )}
@@ -84,7 +84,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({ item, onClose }) => 
               </p>
 
               {item.prepTime && (
-                <div className="flex items-center gap-2 text-xs text-[#AAB8D0] mb-6 bg-[#142341] p-3 rounded-xl border border-[#CBD4E5]/10">
+                <div className="flex items-center gap-2 text-xs text-[#AAB8D0] mb-6 bg-[#142341] p-3.5 rounded-2xl border border-[#CBD4E5]/10">
                   <Clock className="w-4 h-4 text-[#FF8A4C]" />
                   <span>Estimated Preparation Time: <strong className="text-[#FFF3E6]">{item.prepTime}</strong></span>
                 </div>
@@ -99,32 +99,36 @@ export const ProductModal: React.FC<ProductModalProps> = ({ item, onClose }) => 
                 </span>
               </div>
 
-              <div className="flex items-center gap-4">
-                {/* Quantity */}
-                <div className="flex items-center bg-[#142341] rounded-xl p-1 border border-[#CBD4E5]/10">
-                  <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="p-2 rounded-lg text-[#FFF3E6] hover:bg-[#FF7438] hover:text-[#101B35] transition-colors"
-                  >
-                    <Minus className="w-4 h-4" />
-                  </button>
-                  <span className="w-8 text-center font-semibold text-[#FFF3E6] text-sm">
-                    {quantity}
-                  </span>
-                  <button
-                    onClick={() => setQuantity(quantity + 1)}
-                    className="p-2 rounded-lg text-[#FFF3E6] hover:bg-[#FF7438] hover:text-[#101B35] transition-colors"
-                  >
-                    <Plus className="w-4 h-4" />
-                  </button>
+              {/* Quantity and Add to Cart Stacked for Perfect Fit */}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between bg-[#142341] rounded-2xl px-4 py-2 border border-[#CBD4E5]/15">
+                  <span className="text-xs text-[#AAB8D0] font-medium">Quantity</span>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                      className="p-2 rounded-xl text-[#FFF3E6] hover:bg-[#FF7438] hover:text-[#101B35] transition-colors cursor-pointer"
+                      aria-label="Decrease quantity"
+                    >
+                      <Minus className="w-4 h-4" />
+                    </button>
+                    <span className="w-8 text-center font-bold text-[#FFF3E6] text-sm">
+                      {quantity}
+                    </span>
+                    <button
+                      onClick={() => setQuantity(quantity + 1)}
+                      className="p-2 rounded-xl text-[#FFF3E6] hover:bg-[#FF7438] hover:text-[#101B35] transition-colors cursor-pointer"
+                      aria-label="Increase quantity"
+                    >
+                      <Plus className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
 
-                {/* Add to Cart CTA */}
                 <button
                   onClick={handleAdd}
-                  className="btn-primary flex-1 py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-sm cursor-pointer"
+                  className="btn-primary w-full py-4 px-6 rounded-2xl flex items-center justify-center gap-2.5 text-sm font-bold cursor-pointer shadow-lg shadow-[#FF7438]/30"
                 >
-                  <ShoppingBag className="w-4 h-4" />
+                  <ShoppingBag className="w-5 h-5 shrink-0" />
                   <span>Add to Cart</span>
                 </button>
               </div>
